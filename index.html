@@ -1,0 +1,1344 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Get Well Soon, Kavya! 💕</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Dancing+Script:wght@400;600;700&family=Poppins:wght@300;400;500;600;700&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            -webkit-tap-highlight-color: transparent;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            overflow-x: hidden;
+            background: linear-gradient(135deg,
+                #ff6b9d 0%,
+                #ff8fab 15%,
+                #ffa8cc 30%,
+                #ffb3d9 45%,
+                #ffc2e6 60%,
+                #ffd1f0 75%,
+                #ffe0fa 90%,
+                #ff6b9d 100%);
+            background-size: 400% 400%;
+            animation: gradientFlow 15s ease infinite;
+            min-height: 100vh;
+            position: relative;
+            touch-action: manipulation;
+        }
+
+        @keyframes gradientFlow {
+            0% { background-position: 0% 50%; }
+            25% { background-position: 100% 50%; }
+            50% { background-position: 100% 100%; }
+            75% { background-position: 0% 100%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        /* App Container */
+        .app-container {
+            display: flex;
+            flex-direction: column;
+            min-height: 100vh;
+            position: relative;
+        }
+
+        /* Tab Navigation */
+        .tab-navigation {
+            position: fixed;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255, 20, 147, 0.1);
+            backdrop-filter: blur(20px);
+            border-top: 1px solid rgba(255, 182, 193, 0.3);
+            display: flex;
+            justify-content: space-around;
+            padding: 10px 0;
+            z-index: 1000;
+            height: 70px;
+        }
+
+        .tab-button {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            flex: 1;
+            background: none;
+            border: none;
+            color: rgba(255, 20, 147, 0.5);
+            font-size: 11px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            padding: 5px;
+        }
+
+        .tab-button.active {
+            color: #ff1493;
+            transform: scale(1.1);
+        }
+
+        .tab-icon {
+            font-size: 24px;
+            margin-bottom: 4px;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active .tab-icon {
+            animation: tabPulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes tabPulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.2); }
+        }
+
+        /* Content Container */
+        .content-container {
+            flex: 1;
+            padding: 20px;
+            padding-bottom: 90px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Tab Content */
+        .tab-content {
+            display: none;
+            animation: fadeInUp 0.5s ease-out;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        /* Background Effects */
+        .floating-bg {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .floating-element {
+            position: absolute;
+            opacity: 0.6;
+            animation: floatDance 18s infinite linear;
+            font-size: 1.5rem;
+        }
+
+        @keyframes floatDance {
+            0% {
+                transform: translateY(100vh) translateX(-30px) rotate(0deg) scale(0.6);
+                opacity: 0;
+            }
+            10% { opacity: 0.7; }
+            90% { opacity: 0.7; }
+            100% {
+                transform: translateY(-100px) translateX(30px) rotate(360deg) scale(1.1);
+                opacity: 0;
+            }
+        }
+
+        .particles {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 2;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #ff1493, #ff69b4, #ffb6c1);
+            border-radius: 50%;
+            animation: particleDance 6s infinite ease-in-out;
+        }
+
+        @keyframes particleDance {
+            0%, 100% {
+                transform: translateY(0) scale(0) rotate(0deg);
+                opacity: 0;
+            }
+            25% {
+                transform: translateY(-60px) scale(1) rotate(90deg);
+                opacity: 1;
+            }
+            50% {
+                transform: translateY(-120px) scale(1.2) rotate(180deg);
+                opacity: 0.9;
+            }
+            75% {
+                transform: translateY(-180px) scale(1) rotate(270deg);
+                opacity: 1;
+            }
+        }
+
+        /* Card Styles */
+        .card {
+            background: rgba(255, 255, 255, 0.25);
+            backdrop-filter: blur(25px);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            border-radius: 25px;
+            padding: 2rem;
+            margin: 1rem 0;
+            text-align: center;
+            box-shadow: 0 20px 40px rgba(255, 20, 147, 0.2);
+            animation: cardEntrance 1s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        @keyframes cardEntrance {
+            0% {
+                transform: scale(0.9) translateY(30px);
+                opacity: 0;
+            }
+            100% {
+                transform: scale(1) translateY(0);
+                opacity: 1;
+            }
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: radial-gradient(circle, rgba(255, 20, 147, 0.1) 0%, transparent 70%);
+            animation: magicRotate 8s linear infinite;
+            pointer-events: none;
+        }
+
+        @keyframes magicRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Typography */
+        .main-title {
+            font-family: 'Dancing Script', cursive;
+            font-size: 3rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #ffb6c1, #ffc0cb, #ff1493);
+            background-size: 300% 300%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: rainbowText 3s ease-in-out infinite, titlePulse 2.5s ease-in-out infinite;
+            text-shadow: 0 0 25px rgba(255, 20, 147, 0.4);
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        @keyframes rainbowText {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes titlePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.03); }
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            background: linear-gradient(45deg, #ff69b4, #ff1493, #da70d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 500;
+            margin-bottom: 1.5rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .message-text {
+            font-size: 1rem;
+            line-height: 1.7;
+            color: #ff1493;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .highlight {
+            font-weight: 700;
+            background: linear-gradient(45deg, #ff1493, #ff69b4, #da70d6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        /* Heart Decorations */
+        .heart-decoration {
+            display: inline-block;
+            font-size: 1.2rem;
+            animation: heartBeat 1.8s ease-in-out infinite;
+            margin: 0 0.3rem;
+            filter: drop-shadow(0 0 8px rgba(255, 20, 147, 0.4));
+        }
+
+        @keyframes heartBeat {
+            0%, 100% { transform: scale(1); }
+            25% { transform: scale(1.15); }
+            50% { transform: scale(1.05); }
+            75% { transform: scale(1.25); }
+        }
+
+        /* Wishes Grid */
+        .wishes-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .wish-card {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            animation: wishCardEntrance 0.8s ease-out both;
+        }
+
+        .wish-card:nth-child(1) { animation-delay: 0.1s; }
+        .wish-card:nth-child(2) { animation-delay: 0.2s; }
+        .wish-card:nth-child(3) { animation-delay: 0.3s; }
+        .wish-card:nth-child(4) { animation-delay: 0.4s; }
+        .wish-card:nth-child(5) { animation-delay: 0.5s; }
+        .wish-card:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes wishCardEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.9);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .wish-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: emojiFloat 3s ease-in-out infinite;
+        }
+
+        @keyframes emojiFloat {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-5px) rotate(5deg); }
+        }
+
+        .wish-title {
+            font-size: 1.1rem;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 0.5rem;
+        }
+
+        .wish-message {
+            font-size: 0.9rem;
+            color: #ff69b4;
+            line-height: 1.5;
+        }
+
+        /* Message Tab - Typewriter Effect */
+        .typewriter-container {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            margin-top: 1rem;
+            min-height: 300px;
+        }
+
+        .typewriter-text {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #ff1493;
+            font-weight: 500;
+            white-space: pre-wrap;
+        }
+
+        .cursor {
+            color: #ff69b4;
+            font-weight: bold;
+            animation: blink 1s infinite;
+        }
+
+        @keyframes blink {
+            0%, 50% { opacity: 1; }
+            51%, 100% { opacity: 0; }
+        }
+
+        /* Surprise Grid */
+        .surprise-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1rem;
+            margin-top: 1rem;
+        }
+
+        .surprise-box {
+            background: rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 182, 193, 0.3);
+            border-radius: 20px;
+            padding: 1.5rem;
+            text-align: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: surpriseEntrance 0.8s ease-out both;
+        }
+
+        .surprise-box:nth-child(1) { animation-delay: 0.1s; }
+        .surprise-box:nth-child(2) { animation-delay: 0.2s; }
+        .surprise-box:nth-child(3) { animation-delay: 0.3s; }
+        .surprise-box:nth-child(4) { animation-delay: 0.4s; }
+        .surprise-box:nth-child(5) { animation-delay: 0.5s; }
+        .surprise-box:nth-child(6) { animation-delay: 0.6s; }
+
+        @keyframes surpriseEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(30px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .surprise-box:hover {
+            transform: scale(1.05);
+            box-shadow: 0 10px 30px rgba(255, 20, 147, 0.3);
+        }
+
+        .surprise-box.opened {
+            background: rgba(255, 255, 255, 0.3);
+            animation: surpriseReveal 0.8s ease-out;
+        }
+
+        @keyframes surpriseReveal {
+            0% { transform: scale(0.8) rotate(-5deg); }
+            50% { transform: scale(1.1) rotate(5deg); }
+            100% { transform: scale(1) rotate(0deg); }
+        }
+
+        .surprise-glow {
+            position: absolute;
+            top: -10px;
+            left: -10px;
+            right: -10px;
+            bottom: -10px;
+            border-radius: 25px;
+            opacity: 0;
+            animation: glowPulse 3s ease-in-out infinite;
+        }
+
+        @keyframes glowPulse {
+            0%, 100% { opacity: 0; }
+            50% { opacity: 0.4; }
+        }
+
+        .surprise-emoji {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            animation: surpriseFloat 2s ease-in-out infinite;
+        }
+
+        @keyframes surpriseFloat {
+            0%, 100% { transform: translateY(0) scale(1); }
+            50% { transform: translateY(-8px) scale(1.1); }
+        }
+
+        .surprise-title {
+            font-size: 1rem;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 0.5rem;
+        }
+
+        .surprise-description {
+            font-size: 0.85rem;
+            color: #ff69b4;
+            line-height: 1.4;
+            margin-bottom: 0.5rem;
+        }
+
+        .tap-for-more {
+            font-size: 0.75rem;
+            color: #ff1493;
+            font-style: italic;
+            font-weight: 600;
+        }
+
+        .sparkle-container {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 0.5rem;
+        }
+
+        .sparkle {
+            font-size: 12px;
+            color: #ff69b4;
+            animation: sparkleShine 1.5s ease-in-out infinite;
+        }
+
+        .sparkle:nth-child(1) { animation-delay: 0s; }
+        .sparkle:nth-child(2) { animation-delay: 0.5s; }
+        .sparkle:nth-child(3) { animation-delay: 1s; }
+
+        @keyframes sparkleShine {
+            0%, 100% { opacity: 0.5; transform: scale(1); }
+            50% { opacity: 1; transform: scale(1.2); }
+        }
+
+        /* Message Overlay */
+        .message-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(20px);
+            border-radius: 20px;
+            padding: 15px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            border: 2px solid rgba(255, 20, 147, 0.4);
+            opacity: 0;
+            transform: translateY(20px) scale(0.9);
+            transition: all 0.5s ease;
+            z-index: 10;
+        }
+
+        .message-overlay.show {
+            opacity: 1;
+            transform: translateY(0) scale(1);
+        }
+
+        .message-emoji {
+            font-size: 30px;
+            margin-bottom: 8px;
+        }
+
+        .message-text {
+            font-size: 12px;
+            color: #ff1493;
+            text-align: center;
+            line-height: 16px;
+            font-weight: 500;
+            margin-bottom: 8px;
+        }
+
+        .heart-row {
+            display: flex;
+            justify-content: center;
+        }
+
+        .message-heart {
+            font-size: 14px;
+            margin: 0 2px;
+            animation: heartBeat 1.5s ease-in-out infinite;
+        }
+
+        .progress-text {
+            font-size: 14px;
+            color: #ff1493;
+            text-align: center;
+            font-weight: 600;
+            background: rgba(255, 255, 255, 0.3);
+            padding: 6px 12px;
+            border-radius: 15px;
+            margin-bottom: 8px;
+        }
+
+        .completion-card {
+            background: rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 182, 193, 0.4);
+            border-radius: 20px;
+            padding: 2rem;
+            margin-top: 2rem;
+            text-align: center;
+            animation: completionEntrance 1s ease-out;
+            display: none;
+        }
+
+        .completion-card.show {
+            display: block;
+        }
+
+        @keyframes completionEntrance {
+            0% {
+                opacity: 0;
+                transform: translateY(50px) scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .completion-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #ff1493;
+            margin-bottom: 1rem;
+        }
+
+        .completion-message {
+            font-size: 14px;
+            color: #ff69b4;
+            text-align: center;
+            line-height: 20px;
+            margin-bottom: 10px;
+        }
+
+        .completion-footer {
+            font-size: 16px;
+            color: #ff1493;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Confetti Effect */
+        .confetti-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+
+        .confetti-particle {
+            position: absolute;
+            width: 8px;
+            height: 8px;
+            border-radius: 4px;
+            animation: confettiFall 3s linear forwards;
+        }
+
+        @keyframes confettiFall {
+            0% {
+                transform: translateY(-100px) translateX(0) rotate(0deg);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(100vh) translateX(var(--drift)) rotate(720deg);
+                opacity: 0;
+            }
+        }
+
+        /* Loading Screen */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #ff1493 0%, #ff69b4 50%, #ffb6c1 100%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            animation: loadingFadeOut 1s ease-out 2.5s both;
+        }
+
+        .loading-heart {
+            font-size: 4rem;
+            color: white;
+            animation: loadingPulse 1.2s ease-in-out infinite;
+            margin-bottom: 1rem;
+            filter: drop-shadow(0 0 20px rgba(255, 255, 255, 0.5));
+        }
+
+        .loading-text {
+            color: white;
+            font-size: 1.1rem;
+            font-weight: 400;
+            animation: loadingTextFade 1.8s ease-in-out infinite;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        @keyframes loadingPulse {
+            0%, 100% { transform: scale(1); opacity: 0.8; }
+            50% { transform: scale(1.15); opacity: 1; }
+        }
+
+        @keyframes loadingTextFade {
+            0%, 100% { opacity: 0.6; }
+            50% { opacity: 1; }
+        }
+
+        @keyframes loadingFadeOut {
+            0% { opacity: 1; visibility: visible; }
+            100% { opacity: 0; visibility: hidden; }
+        }
+
+        /* Mobile Optimizations */
+        @media (max-width: 768px) {
+            .content-container {
+                padding: 15px;
+                padding-bottom: 90px;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin: 0.5rem 0;
+            }
+
+            .main-title {
+                font-size: 2.5rem;
+            }
+
+            .subtitle {
+                font-size: 1.1rem;
+            }
+
+            .message-text {
+                font-size: 0.95rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .card {
+                padding: 1.2rem;
+            }
+
+            .main-title {
+                font-size: 2.2rem;
+            }
+
+            .subtitle {
+                font-size: 1rem;
+            }
+
+            .message-text {
+                font-size: 0.9rem;
+            }
+
+            .surprise-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Touch feedback */
+        .tab-button:active {
+            transform: scale(0.95);
+        }
+
+        .surprise-box:active {
+            transform: scale(0.98);
+        }
+
+        /* Accessibility */
+        @media (prefers-reduced-motion: reduce) {
+            * {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Loading Screen -->
+    <div class="loading" id="loading">
+        <div class="loading-heart">💖</div>
+        <div class="loading-text">Preparing something special for Kavya...</div>
+    </div>
+
+    <!-- Background Effects -->
+    <div class="floating-bg" id="floatingBg"></div>
+    <div class="particles" id="particles"></div>
+
+    <!-- Confetti Container -->
+    <div class="confetti-container" id="confettiContainer"></div>
+
+    <!-- App Container -->
+    <div class="app-container">
+        <!-- Content Container -->
+        <div class="content-container">
+            <!-- Get Well Tab -->
+            <div class="tab-content active" id="tab-getwellsoon">
+                <div class="card">
+                    <h1 class="main-title">Get Well Soon!</h1>
+                    <p class="subtitle">For My Beautiful Kavya <span class="heart-decoration">💕</span></p>
+                    
+                    <div class="message-text">
+                        <p><span class="highlight">My Dearest Kavya,</span></p>
+                        <p>Sending you all my love and warmest wishes for a speedy recovery. You're the strongest person I know, and I believe in your amazing healing power.</p>
+                        <p>Rest well, take care of yourself, and know that I'm thinking of you every moment.</p>
+                        <p><span class="highlight">With all my love and endless hugs,<br>Your loving partner</span> <span class="heart-decoration">❤️</span></p>
+                    </div>
+                    
+                    <div style="margin-top: 1.5rem; font-size: 0.9rem; color: #ff69b4; font-style: italic;">
+                        Made with 💕 especially for you
+                    </div>
+                </div>
+            </div>
+
+            <!-- Wishes Tab -->
+            <div class="tab-content" id="tab-wishes">
+                <div class="card">
+                    <h2 class="main-title" style="font-size: 2.5rem;">Healing Wishes</h2>
+                    <p class="subtitle">Special thoughts just for you 💕</p>
+                </div>
+                
+                <div class="wishes-grid">
+                    <div class="wish-card">
+                        <div class="wish-emoji">🌟</div>
+                        <div class="wish-title">Healing Energy</div>
+                        <div class="wish-message">May every sunrise bring you renewed strength and healing energy.</div>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-emoji">🌸</div>
+                        <div class="wish-title">Gentle Recovery</div>
+                        <div class="wish-message">Wishing you a gentle and swift recovery, filled with love and care.</div>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-emoji">💪</div>
+                        <div class="wish-title">Inner Strength</div>
+                        <div class="wish-message">Your strength amazes me every day. You will overcome this with grace.</div>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-emoji">🌈</div>
+                        <div class="wish-title">Brighter Days</div>
+                        <div class="wish-message">Better days are coming, and I will be right here beside you.</div>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-emoji">🦋</div>
+                        <div class="wish-title">Transformation</div>
+                        <div class="wish-message">Like a butterfly, you will emerge stronger and more beautiful.</div>
+                    </div>
+                    <div class="wish-card">
+                        <div class="wish-emoji">💎</div>
+                        <div class="wish-title">Precious Soul</div>
+                        <div class="wish-message">You are precious beyond measure, and your health is my priority.</div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Message Tab -->
+            <div class="tab-content" id="tab-message">
+                <div class="card">
+                    <h2 class="main-title" style="font-size: 2.2rem;">A Love Letter</h2>
+                    <p class="subtitle">From my heart to yours 💕</p>
+                </div>
+                
+                <div class="typewriter-container">
+                    <div class="typewriter-text" id="typewriterText"></div>
+                </div>
+                
+                <div style="text-align: center; margin-top: 1rem; font-size: 0.9rem; color: #ff69b4; font-style: italic;">
+                    Written with love, sealed with hope 💌
+                </div>
+            </div>
+
+            <!-- Surprise Tab -->
+            <div class="tab-content" id="tab-surprise">
+                <div class="card">
+                    <h2 class="main-title" style="font-size: 2.5rem;">Surprise Box</h2>
+                    <p class="subtitle">Special gifts to make you smile 🎁</p>
+                    <div class="progress-text" id="progressText">0 of 6 surprises opened</div>
+                </div>
+                
+                <div class="surprise-grid" id="surpriseGrid">
+                    <!-- Surprise boxes will be generated by JavaScript -->
+                </div>
+                
+                <div class="completion-card" id="completionCard">
+                    <div class="completion-title">🎉 All Surprises Opened! 🎉</div>
+                    <div class="completion-message">
+                        You've unlocked all the love and healing energy I've packed just for you!
+                        Each surprise carries a piece of my heart and my wishes for your recovery.
+                    </div>
+                    <div class="completion-footer">
+                        You are loved beyond measure! 💕
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Tab Navigation -->
+        <div class="tab-navigation">
+            <button class="tab-button active" data-tab="getwellsoon">
+                <div class="tab-icon">❤️</div>
+                <div>Get Well</div>
+            </button>
+            <button class="tab-button" data-tab="wishes">
+                <div class="tab-icon">✨</div>
+                <div>Wishes</div>
+            </button>
+            <button class="tab-button" data-tab="message">
+                <div class="tab-icon">💌</div>
+                <div>Message</div>
+            </button>
+            <button class="tab-button" data-tab="surprise">
+                <div class="tab-icon">🎁</div>
+                <div>Surprise</div>
+            </button>
+        </div>
+    </div>
+
+    <script>
+        // Global variables
+        let openedSurprises = [];
+        let typewriterActive = false;
+
+        // Surprise data
+        const surprises = [
+            {
+                id: 1,
+                title: 'Virtual Hug',
+                emoji: '🤗',
+                description: 'A warm, healing hug sent with all my love',
+                color: '#ff69b4',
+                message: 'Wrapping you in the biggest, warmest virtual hug! Feel my love surrounding you always.'
+            },
+            {
+                id: 2,
+                title: 'Healing Playlist',
+                emoji: '🎵',
+                description: 'Soothing melodies to help you relax and heal',
+                color: '#ff1493',
+                message: 'Here\'s a collection of peaceful songs to accompany your healing journey. Let the music soothe your soul.'
+            },
+            {
+                id: 3,
+                title: 'Digital Flowers',
+                emoji: '🌸',
+                description: 'A beautiful bouquet that never wilts',
+                color: '#da70d6',
+                message: 'These flowers will bloom forever, just like my love for you. They represent eternal beauty and hope.'
+            },
+            {
+                id: 4,
+                title: 'Love Potion',
+                emoji: '🧪',
+                description: 'A magical remedy made of pure love',
+                color: '#ff6b9d',
+                message: 'This magical potion contains concentrated love, hope, and healing energy. Drink it with your heart!'
+            },
+            {
+                id: 5,
+                title: 'Sunshine Box',
+                emoji: '☀️',
+                description: 'Captured sunshine to brighten your day',
+                color: '#ffa8cc',
+                message: 'I\'ve captured rays of sunshine just for you! Let this warmth fill your heart and brighten your spirits.'
+            },
+            {
+                id: 6,
+                title: 'Dream Catcher',
+                emoji: '🌙',
+                description: 'Sweet dreams and peaceful sleep',
+                color: '#ffb3d9',
+                message: 'This dream catcher will guard your sleep and fill your dreams with beautiful, healing visions.'
+            }
+        ];
+
+        // Full message for typewriter
+        const fullMessage = `My Beautiful Kavya,
+
+Every moment without your bright smile feels like an eternity. You are my sunshine, my strength, and my inspiration. Watching you face this challenge with such grace and courage only makes me love you more.
+
+I want you to know that you're not alone in this journey. I'm here, holding your hand through every step, every breath, every healing moment. Your strength amazes me daily, and I have complete faith in your body's incredible ability to heal.
+
+Take all the time you need to rest and recover. Don't worry about anything else - just focus on getting better. I'll take care of everything else because taking care of you is my greatest joy and responsibility.
+
+When you're feeling low, remember all the beautiful moments we've shared and all the adventures waiting for us. Remember how much you mean to me, to your family, to everyone whose life you've touched with your kindness and love.
+
+You are a warrior, my love. You are strong, brave, and absolutely unstoppable. This is just a chapter in your story, not the end of it. Better days are coming, and I'll be right there to celebrate each small victory with you.
+
+Rest well, heal completely, and know that you are loved beyond measure.
+
+Forever yours,
+Your loving partner ❤️
+
+P.S. I'm counting down the days until I can hold you close again and see that beautiful smile light up the world.`;
+
+        // Wait for DOM to load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Initialize background effects
+            initializeBackgroundEffects();
+            
+            // Initialize tab navigation
+            initializeTabNavigation();
+            
+            // Initialize surprise boxes
+            initializeSurpriseBoxes();
+            
+            // Add touch interactions
+            addTouchInteractions();
+        });
+
+        // Background Effects
+        function initializeBackgroundEffects() {
+            const floatingBg = document.getElementById('floatingBg');
+            const particles = document.getElementById('particles');
+
+            // Create floating elements
+            const symbols = ['💖', '✨', '🌸', '💫', '🦋', '🌺', '💝', '🌟', '🌙', '⭐', '🌈', '💐', '🎀', '💎', '🌷', '🌻'];
+            const elementCount = window.innerWidth < 768 ? 12 : 18;
+
+            for (let i = 0; i < elementCount; i++) {
+                const element = document.createElement('div');
+                element.className = 'floating-element';
+                element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                element.style.left = Math.random() * 100 + '%';
+                element.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                element.style.animationDelay = Math.random() * 18 + 's';
+                element.style.animationDuration = (Math.random() * 8 + 15) + 's';
+                floatingBg.appendChild(element);
+            }
+
+            // Create particles
+            const particleCount = window.innerWidth < 768 ? 20 : 30;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = Math.random() * 100 + '%';
+                particle.style.animationDelay = Math.random() * 6 + 's';
+                particle.style.animationDuration = (Math.random() * 2 + 5) + 's';
+                particles.appendChild(particle);
+            }
+
+            // Continuous element generation
+            setInterval(() => {
+                if (Math.random() < 0.3) {
+                    const element = document.createElement('div');
+                    element.className = 'floating-element';
+                    element.innerHTML = symbols[Math.floor(Math.random() * symbols.length)];
+                    element.style.left = Math.random() * 100 + '%';
+                    element.style.fontSize = (Math.random() * 10 + 15) + 'px';
+                    element.style.animationDuration = (Math.random() * 8 + 15) + 's';
+                    floatingBg.appendChild(element);
+
+                    setTimeout(() => {
+                        if (element.parentNode) {
+                            element.parentNode.removeChild(element);
+                        }
+                    }, 20000);
+                }
+            }, 2000);
+        }
+
+        // Tab Navigation
+        function initializeTabNavigation() {
+            const tabButtons = document.querySelectorAll('.tab-button');
+            const tabContents = document.querySelectorAll('.tab-content');
+
+            tabButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    const targetTab = button.getAttribute('data-tab');
+                    
+                    // Remove active class from all buttons and contents
+                    tabButtons.forEach(btn => btn.classList.remove('active'));
+                    tabContents.forEach(content => content.classList.remove('active'));
+                    
+                    // Add active class to clicked button and corresponding content
+                    button.classList.add('active');
+                    document.getElementById(`tab-${targetTab}`).classList.add('active');
+                    
+                    // Trigger specific tab initialization
+                    if (targetTab === 'message') {
+                        startTypewriter();
+                    }
+                    
+                    // Add haptic-like feedback
+                    button.style.transform = 'scale(0.95)';
+                    setTimeout(() => {
+                        button.style.transform = '';
+                    }, 150);
+                });
+            });
+        }
+
+        // Typewriter Effect
+        function startTypewriter() {
+            if (typewriterActive) return;
+            typewriterActive = true;
+            
+            const typewriterElement = document.getElementById('typewriterText');
+            typewriterElement.innerHTML = '';
+            
+            let currentIndex = 0;
+            
+            function typeNextCharacter() {
+                if (currentIndex < fullMessage.length) {
+                    typewriterElement.innerHTML = fullMessage.substring(0, currentIndex + 1) + '<span class="cursor">|</span>';
+                    currentIndex++;
+                    setTimeout(typeNextCharacter, 30);
+                } else {
+                    typewriterElement.innerHTML = fullMessage + '<span class="cursor">|</span>';
+                }
+            }
+            
+            typeNextCharacter();
+        }
+
+        // Surprise Boxes
+        function initializeSurpriseBoxes() {
+            const surpriseGrid = document.getElementById('surpriseGrid');
+            const progressText = document.getElementById('progressText');
+
+            surprises.forEach((surprise, index) => {
+                const box = document.createElement('div');
+                box.className = 'surprise-box';
+                box.dataset.surpriseId = surprise.id;
+                box.innerHTML = `
+                    <div class="surprise-glow" style="background-color: ${surprise.color};"></div>
+                    <div class="surprise-emoji">🎁</div>
+                    <div class="surprise-title">Surprise ${index + 1}</div>
+                    <div class="surprise-description">Tap to open!</div>
+                    <div class="sparkle-container">
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">✨</span>
+                        <span class="sparkle">✨</span>
+                    </div>
+                `;
+
+                let isOpened = false;
+                let showingMessage = false;
+
+                box.addEventListener('click', () => {
+                    if (!isOpened) {
+                        // Open the surprise
+                        isOpened = true;
+                        openedSurprises.push(surprise.id);
+                        
+                        box.classList.add('opened');
+                        box.innerHTML = `
+                            <div class="surprise-glow" style="background-color: ${surprise.color};"></div>
+                            <div class="surprise-emoji">${surprise.emoji}</div>
+                            <div class="surprise-title" style="color: ${surprise.color};">${surprise.title}</div>
+                            <div class="surprise-description">${surprise.description}</div>
+                            <div class="tap-for-more">Tap for special message</div>
+                        `;
+
+                        // Update progress
+                        progressText.textContent = `${openedSurprises.length} of ${surprises.length} surprises opened`;
+
+                        // Check if all surprises are opened
+                        if (openedSurprises.length === surprises.length) {
+                            setTimeout(() => {
+                                document.getElementById('completionCard').classList.add('show');
+                                createConfetti();
+                            }, 500);
+                        }
+
+                        // Add click listener for message
+                        setTimeout(() => {
+                            box.addEventListener('click', toggleMessage);
+                        }, 100);
+
+                    } else if (box.addEventListener !== toggleMessage) {
+                        toggleMessage();
+                    }
+
+                    function toggleMessage() {
+                        const existingOverlay = box.querySelector('.message-overlay');
+                        
+                        if (existingOverlay) {
+                            existingOverlay.classList.remove('show');
+                            setTimeout(() => {
+                                existingOverlay.remove();
+                                showingMessage = false;
+                                box.querySelector('.tap-for-more').textContent = 'Tap for special message';
+                            }, 500);
+                        } else {
+                            showingMessage = true;
+                            const overlay = document.createElement('div');
+                            overlay.className = 'message-overlay';
+                            overlay.innerHTML = `
+                                <div class="message-emoji">${surprise.emoji}</div>
+                                <div class="message-text">${surprise.message}</div>
+                                <div class="heart-row">
+                                    <span class="message-heart">💕</span>
+                                    <span class="message-heart">💖</span>
+                                    <span class="message-heart">💕</span>
+                                </div>
+                            `;
+                            box.appendChild(overlay);
+                            
+                            setTimeout(() => {
+                                overlay.classList.add('show');
+                            }, 10);
+                            
+                            box.querySelector('.tap-for-more').textContent = 'Tap to hide message';
+                        }
+                    }
+                });
+
+                surpriseGrid.appendChild(box);
+            });
+        }
+
+        // Confetti Effect
+        function createConfetti() {
+            const confettiContainer = document.getElementById('confettiContainer');
+            const colors = ['#ff1493', '#ff69b4', '#da70d6', '#ffa8cc', '#ffb3d9'];
+            const emojis = ['🎉', '✨', '💖', '🌟', '💫'];
+
+            for (let i = 0; i < 50; i++) {
+                setTimeout(() => {
+                    const confetti = document.createElement('div');
+                    confetti.className = 'confetti-particle';
+                    
+                    if (Math.random() > 0.5) {
+                        confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                    } else {
+                        confetti.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+                        confetti.style.fontSize = '12px';
+                        confetti.style.display = 'flex';
+                        confetti.style.alignItems = 'center';
+                        confetti.style.justifyContent = 'center';
+                    }
+                    
+                    confetti.style.left = Math.random() * 100 + '%';
+                    confetti.style.setProperty('--drift', (Math.random() - 0.5) * 200 + 'px');
+                    
+                    confettiContainer.appendChild(confetti);
+                    
+                    setTimeout(() => {
+                        confetti.remove();
+                    }, 3000);
+                }, i * 100);
+            }
+        }
+
+        // Touch Interactions
+        function addTouchInteractions() {
+            // Add sparkle trail on touch move
+            document.addEventListener('touchmove', function(e) {
+                if (e.touches.length > 0 && Math.random() < 0.15) {
+                    const touch = e.touches[0];
+                    createSparkle(touch.clientX, touch.clientY);
+                }
+            });
+
+            document.addEventListener('mousemove', function(e) {
+                if (Math.random() < 0.08) {
+                    createSparkle(e.clientX, e.clientY);
+                }
+            });
+        }
+
+        function createSparkle(x, y) {
+            const sparkle = document.createElement('div');
+            sparkle.style.position = 'fixed';
+            sparkle.style.left = x + 'px';
+            sparkle.style.top = y + 'px';
+            sparkle.style.width = '6px';
+            sparkle.style.height = '6px';
+            sparkle.style.background = 'radial-gradient(circle, #fff, #ff69b4, #ff1493)';
+            sparkle.style.borderRadius = '50%';
+            sparkle.style.pointerEvents = 'none';
+            sparkle.style.zIndex = '1000';
+            sparkle.style.animation = 'sparkleLife 1.5s ease-out forwards';
+            
+            document.body.appendChild(sparkle);
+            
+            setTimeout(() => {
+                if (sparkle.parentNode) {
+                    sparkle.parentNode.removeChild(sparkle);
+                }
+            }, 1500);
+        }
+
+        // Performance optimization for mobile
+        if (window.innerWidth < 768) {
+            const style = document.createElement('style');
+            style.textContent = `
+                .floating-element { animation-duration: 20s !important; }
+                .particle { animation-duration: 8s !important; }
+            `;
+            document.head.appendChild(style);
+        }
+
+        // Prevent zoom on double tap
+        let lastTouchEnd = 0;
+        document.addEventListener('touchend', function (event) {
+            const now = (new Date()).getTime();
+            if (now - lastTouchEnd <= 300) {
+                event.preventDefault();
+            }
+            lastTouchEnd = now;
+        }, false);
+
+        // Add sparkle animation keyframes
+        const sparkleKeyframes = `
+            @keyframes sparkleLife {
+                0% {
+                    transform: scale(0) rotate(0deg);
+                    opacity: 0;
+                }
+                25% {
+                    transform: scale(1) rotate(90deg);
+                    opacity: 1;
+                }
+                50% {
+                    transform: scale(1.3) rotate(180deg);
+                    opacity: 0.9;
+                }
+                75% {
+                    transform: scale(1) rotate(270deg);
+                    opacity: 1;
+                }
+                100% {
+                    transform: scale(0) rotate(360deg);
+                    opacity: 0;
+                }
+            }
+        `;
+
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = sparkleKeyframes;
+        document.head.appendChild(styleSheet);
+    </script>
+</body>
+</html>
